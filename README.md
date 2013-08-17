@@ -12,4 +12,6 @@ About 5 months ago I built an app using knockout.js that compiles a single loan 
 
 I've been very happy with how Angular works, and with not having to wrap up my objects in wrappers to use them in view binding.  I love the easy to use routing, the separation of behaviour/markup/models, the MVC implementation, and the power of custom filters.  Also, I honestly just picked up on this framework easier than I did knockout.  For instance, writing custom directives and filters made sense to me, while doing advanced things with knockout required "unwrapping" observables and such that I honestly had a hard time grocking at the time.
 
+At the time of this writing, I have this app running here: http://gore-guardian.hopto.org
+
 Feel free to make this better, and please remember that I'm still learning :)
