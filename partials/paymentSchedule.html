@@ -1,0 +1,48 @@
+<div class="detailsSectionHeader">Payment Schedule
+    <div class="accordianTrigger">
+        <a class="btn collapsed" data-toggle="collapse" data-target=".paymentSchedule-collapse"></a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- The model in the controller is named currentProfile.  This is a StandardLoanProfile object -->
+<div class="paymentSchedule-collapse collapse">
+    <div class="paymentSchedule"> 
+        <div>       
+            <div class="formFieldLabel">
+                <label>Year</label>                 
+            </div>
+            <select name="ddlScheduleYear" id="ddlScheduleYear" ng-model="scheduleYear.year" ng-options="year.year as year.year for year in currentProfile.years" ng-change="updateScheduleYear()"></select>
+            <div class="clearfix"></div>
+        </div>
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Start Balance</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Extra</th>
+                <th>Total</th>
+                <th>End Balance</th>
+            </tr>
+            <tr ng-repeat="month in scheduleYear.months">
+                <td>{{getMonthName(month.month)}}</td>
+                <td>{{month.startBalance | currency}}</td>
+                <td>{{month.principalPayment | currency}}</td>
+                <td>{{month.interestPayment | currency}}</td>
+                <td>
+                    <a class="btn" href="" ng-hide="editSXP.editMonth == month.month && editSXP.editMonthYear == scheduleYear.year" ng-click="setEditMonth(month, scheduleYear.year)">{{month.extraPayment | currency}}</a>
+                    <form id="monthSXPform" name="monthSXPform" ng-show="editSXP.editMonth == month.month && editSXP.editMonthYear == scheduleYear.year">                    
+                        <input type="text" id="monthSXP" name="monthSXP" ng-required="true" input-float="2" data-min-Num="0" ng-model="editSXP.editMonthSXP"/>
+                        <span class="invalid" ng-show="monthSXPform.monthSXP.$error.required || monthSXPform.monthSXP.$error.float || monthSXPform.monthSXP.$error.minNum">*</span>
+                        <div class="monthSXPButtons">
+                            <button class="btn" ng-click="updateMonthSXP(month.extraPayment)" ng-disabled="monthSXPform.$invalid">Save</button>
+                            <button class="btn" ng-click="cancelMonthSXP()">Cancel</button>
+                        </div>
+                    </form>
+                </td>
+                <td>{{(month.principalPayment + month.interestPayment + month.extraPayment) | currency}}</td>
+                <td>{{month.endBalance | currency}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

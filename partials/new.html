@@ -1,0 +1,76 @@
+<h3>Create a new Loan Profile</h3>
+
+<form id="newProfileForm" name="newProfileForm" ng-model="newLoanProfile" novalidate>
+    <div>
+        <div class="formFieldLabel">
+            <label for="name">Name</label>            
+        </div>
+        <div class="formField">
+            <input type="text" id="name" name="name" ng-model="newLoanProfile.name" ng-required="true"/>
+            <span class="invalid" ng-show="newProfileForm.name.$error.required">*</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <div class="formFieldLabel">
+            <label for="description">Description</label>            
+        </div>
+        <div class="formField">
+            <input type="text" id="description" name="description" ng-model="newLoanProfile.description" ng-required="true"/>
+            <span class="invalid" ng-show="newProfileForm.description.$error.required">*</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <div class="formFieldLabel">
+            <label for="loanAmt">Loan Amount</label>
+        </div>
+        <div class="formField">
+            <input type="text" id="loanAmt" name="loanAmt" ng-model="newLoanProfile.loanAmount" data-ng-required="true" data-input-float="2" data-min-Num="100"/>            
+            <span class="invalid" ng-show="newProfileForm.loanAmt.$error.required || newProfileForm.loanAmt.$error.float || newProfileForm.loanAmt.$error.minNum">*</span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="invalid" ng-show="newProfileForm.loanAmt.$error.minNum">Minimum loan amount is 100</div> 
+    </div>
+    <div>
+        <div class="formFieldLabel">
+            <label for="interestRate">Interest Rate</label>
+        </div>
+        <div class="formField">
+            <input id="interestRate" type="text" ng-model="newLoanProfile.interestRate" name="interestRate" data-input-float="3" data-min-Num="1" data-ng-required="true"/>
+            <span class="invalid" ng-show="newProfileForm.interestRate.$error.required || newProfileForm.interestRate.$error.float || newProfileForm.interestRate.$error.minNum">*</span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="invalid" ng-show="newProfileForm.interestRate.$error.minNum">Minimum interest amount is 1%</div> 
+    </div>
+    <div>
+        <div class="formFieldLabel">
+            <label for="loanTerm">Term</label>
+        </div>
+        <div class="formField">
+            <input type="number" ng-model="newLoanProfile.loanTerm" name="loanTerm" ng-required="true" data-min-Num="1"/>            
+            <span class="invalid" ng-show="newProfileForm.loanTerm.$error.required || newProfileForm.loanTerm.$error.minNum">*</span>
+            &nbsp;
+            <select id="loanTermType" ng-model="newLoanProfile.loanTermType" 
+               ng-options="type as type for type in loanTermTypes" name="loanTermType" ng-required="true">
+            </select>
+            <span class="invalid" ng-show="newProfileForm.loanTermType.$error.required">*</span>
+        </div>        
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <div class="formFieldLabel">
+            <label for="firstPaymentDate">Start Date</label>            
+        </div>
+        <div class="formField">
+            <input ui-date type="text" ng-model="newLoanProfile.firstPaymentDate" name="firstPaymentDate" id="firstPaymentDate" ng-required="true"/>
+            <span class="invalid" ng-show="newProfileForm.firstPaymentDate.$error.required || newProfileForm.firstPaymentDate.$error.date">*</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <br>
+    <div>
+        <a class="btn" ng-click="createProfile()" ng-disabled="newProfileForm.$invalid">Submit</a>
+        <a class="btn" ng-click="cancelCreateProfile()">Cancel</a>
+    </div>
+</div>

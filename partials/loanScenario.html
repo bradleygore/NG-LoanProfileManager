@@ -1,0 +1,85 @@
+<div class="detailsSectionHeader">Loan Scenario
+    <div class="accordianTrigger">
+        <a class="btn" data-toggle="collapse" data-target=".loanScenario-collapse"></a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="loanScenario-collapse in">
+    <div class="profileLoanScenario">
+        <form id="profileEditForm" name="profileEditForm" ng-model="currentProfile" ng-class="crudModes.editScenarioMode && 'editMode' || 'viewMode'" novalidate>
+            <div>
+                <div class="detailFieldLabel">
+                    <label for="name">Name</label>
+                </div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.name}}</span>
+                    <input ng-show="crudModes.editScenarioMode" type="text" id="name" name="name" ng-model="currentProfile.name" ng-required="true"/>
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.name.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="detailFieldLabel"><label for="description">Description</label></div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.description}}</span>
+                    <input ng-show="crudModes.editScenarioMode" type="text" id="description" name="description" ng-model="currentProfile.description" ng-required="true"/>
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.description.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div ng-hide="crudModes.editScenarioMode"><!--Can't Edit Monthly Payment-->
+                <div class="detailFieldLabel"><label>Monthly Payment</label></div>
+                <div class="detailField">{{currentProfile.loanScenario.scheduledMonthlyPayment | currency}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="detailFieldLabel"><label for="loanAmt">Loan Amount</label></div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.loanScenario.loanAmt | currency}}</span>
+                    <input ng-show="crudModes.editScenarioMode" type="text" id="loanAmt" name="loanAmt" ng-model="currentProfile.loanScenario.loanAmt" input-float="2" data-min-Num="100" ng-required="true"/>            
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && (profileEditForm.loanAmt.$error.required || profileEditForm.loanAmt.$error.float || profileEditForm.loanAmt.$error.minNum)">*</span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.loanAmt.$error.minNum">Minimum loan amount is 100</div>
+            </div>
+            <div>
+                <div class="detailFieldLabel">
+                    <label for="interestRate">Interest Rate</label>
+                </div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.loanScenario.interestRate}}%</span>
+                    <input data-ng-show="crudModes.editScenarioMode" id="interestRate" type="text" data-ng-model="currentProfile.loanScenario.interestRate" name="interestRate" input-float="3" data-min-Num="1" ng-required="true"/>
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && (profileEditForm.interestRate.$error.required || profileEditForm.interestRate.$error.float || profileEditForm.interestRate.$error.minNum)">*</span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.interestRate.$error.minNum">Minim interest rate is 1%</div>
+            </div>
+            <div>
+                <div class="detailFieldLabel"><label for="loanTerm">Loan Term</label></div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.loanScenario.loanTerm}} {{currentProfile.loanScenario.loanTermType}}</span>
+                    <input ng-show="crudModes.editScenarioMode" type="number" ng-model="currentProfile.loanScenario.loanTerm" name="loanTerm" ng-required="true" data-min-Num="1"/>            
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.loanTerm.$error.required || profileEditForm.loanTerm.$error.minNum">*</span>
+                    <select ng-show="crudModes.editScenarioMode" id="loanTermType" ng-model="currentProfile.loanScenario.loanTermType" 
+                       ng-options="type as type for type in loanTermTypes" name="loanTermType" ng-required="true">
+                    </select>
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && profileEditForm.loanTermType.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="detailFieldLabel"><label for="firstPaymentDate">Start Date</label></div>
+                <div class="detailField">
+                    <span ng-hide="crudModes.editScenarioMode">{{currentProfile.loanScenario.firstPaymentDate | date:'MM/dd/yyyy'}}</span>
+                    <input ui-date ng-show="crudModes.editScenarioMode" type="text" ng-model="currentProfile.loanScenario.firstPaymentDate" name="firstPaymentDate" id="firstPaymentDate" ng-required="true"/>
+                    <span class="invalid" ng-show="crudModes.editScenarioMode && (profileEditForm.firstPaymentDate.$error.required || profileEditForm.firstPaymentDate.$error.date)">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <button class="btn" ng-click="toggleEdit()">{{crudModes.editScenarioMode && "Cancel" || "Edit"}}</button>
+                <button class="btn" ng-show="crudModes.editScenarioMode" ng-disabled="profileEditForm.$invalid && !profileEditForm.$pristine" ng-click="updateProfile()">Save</button>
+            </div>
+        </form>
+    </div>  
+</div>

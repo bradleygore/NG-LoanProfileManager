@@ -1,0 +1,68 @@
+<div class="detailsSectionHeader">Recurring Extra Payments
+    <div class="accordianTrigger">
+        <a class="btn collapsed" data-toggle="collapse" data-target=".rxp-collapse"></a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="rxp-collapse collapse">
+    <div class="recurringExtras">
+        <div data-ng-hide="crudModes.addRXPMode" data-ng-repeat="rxp in currentProfile.extraPayments.recurringExtraPayments" ng-show="currentProfile.extraPayments.recurringExtraPayments.length > 0">
+            <section ng-class-even="'even'" ng-class-odd="'odd'">
+                <div class="rxpLabel">{{rxpLabel(rxp)}}</div>
+                <div class="rxpAmount">{{rxp.amount | currency}}</div>
+                <a href="" class="rxpDelete" ng-click="deleteRecurringExtraPayment(rxp)"><span>Delete</span></a>
+                <div class="clearfix"></div>
+            </section>
+        </div>
+        <div data-ng-show="currentProfile.extraPayments.recurringExtraPayments.length == 0 && !crudModes.addRXPMode" class="noExtraPayments">
+            There are currently no extra recurring payments.  Click "Add New" below to set one up!
+        </div>
+        <form ng-show="crudModes.addRXPMode" name="addRXPForm" ng-model="recurringExtraPayment" novalidate>
+            <div class="newExtra">
+                <div class="formFieldLabel"><label for="startYear">Start Year</label></div>
+                <div class="formField">
+                    <select ng-model="recurringExtraPayment.startYear" ng-options="year as year.year for year in currentProfile.years" name="startYear" id="startYear" ng-required="true" ng-change="updateSelectedYear('start')"></select>
+                    <span class="invalid" ng-show="addRXPForm.startYear.$error.required">*</span>
+                </div>        
+                <div class="clearfix"></div>
+            </div>
+            <div class="newExtra">
+                <div class="formFieldLabel"><label for="startMonth">Start Month</label></div>
+                <div class="formField">
+                    <select ng-disabled="recurringExtraPayment.startYear == undefined" ng-model="recurringExtraPayment.startMonth" ng-options="month for month in startMonthNames" name="startMonth" id="startMonth" ng-required="true"></select>
+                    <span class="invalid" ng-show="addRXPForm.startMonth.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="newExtra">
+                <div class="formFieldLabel"><label for="endYear">End Year</label></div>
+                <div class="formField">
+                    <select ng-model="recurringExtraPayment.endYear" ng-disabled="recurringExtraPayment.startYear == undefined" ng-options="year.year for year in currentProfile.years | yearGreaterThan:recurringExtraPayment.startYear.year" name="endYear" id="endYear" ng-required="true" ng-change="updateSelectedYear('end')"></select>
+                    <span class="invalid" ng-show="addRXPForm.endYear.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="newExtra">
+                <div class="formFieldLabel"><label for="endMonth">End Month</label></div>
+                <div class="formField">
+                    <select ng-disabled="recurringExtraPayment.endYear == undefined" ng-model="recurringExtraPayment.endMonth" ng-options="month for month in endMonthNames" name="endMonth" id="endMonth" ng-required="true"></select>
+                    <span class="invalid" ng-show="addRXPForm.startMonth.$error.required">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="newExtra">
+                <div class="formFieldLabel"><label for="amount">Amount</label></div>
+                <div class="formField">
+                    <input ng-model="recurringExtraPayment.amount" id="amount" name="amount" type="text" data-input-Float="2" data-min-Num="1" ng-required="true">
+                    <span class="invalid" ng-show="addRXPForm.amount.$error.required || addRXPForm.amount.$error.minNum || addRXPForm.amount.$error.float">*</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="invalid" ng-show="detailedError.visible">{{detailedError.message}}</div>
+        </form>
+        <div id="rxpActionButtons">
+            <button class="btn" ng-click="crudModes.addRXPMode = !crudModes.addRXPMode">{{crudModes.addRXPMode && "Cancel" || "Add New"}}</button>
+            <button class="btn" ng-show="crudModes.addRXPMode" ng-disabled="addRXPForm.$invalid" ng-click="addRecurringExtraPayment()">Save</button>
+        </div>
+    </div>
+</div>

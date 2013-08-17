@@ -1,0 +1,28 @@
+<div ng-repeat="sxp in currentProfile.extraPayments.singleExtraPayments" ng-show="currentProfile.extraPayments.singleExtraPayments.length > 0">
+    <div class="sxpLbl"></div>
+    <div class="sxpAmt"></div>
+</div>
+<div ng-show="currentProfile.extraPayments.singleExtraPayments.length == 0" class="noExtraPayments">
+    There are currently no extra single payments
+</div>
+<form ng-show="addSXPMode" ng-model="singleExtraPayment">
+    <div class="newExtra">
+        <div class="formFieldLabel"><label for="year">Year</label></div>
+        <div class="formField"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="newExtra">
+        <div class="formFieldLabel"><label for="month">Month</label></div>
+        <div class="formField"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="newExtra">
+        <div class="formFieldLabel"><label for="amount">Amount</label></div>
+        <div class="formField"></div>
+        <div class="clear"></div>
+    </div>
+</form>
+<div>
+    <button ng-click="addSXPMode = !addSXPMode">{{addSXPMode && "Cancel" || "Add New"}}</button>
+    <button ng-show="addSXPMode" ng-click="addSingleExtraPayment()">Save</button>
+</div>

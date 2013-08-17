@@ -1,0 +1,303 @@
+
+
+/*
+    COLORS:
+        Light purple of body: Hex-#6B78B4 RGB-(107,120,180);
+        Chocolate Brown: Hex-#593E1A RGB-(89,62,26);
+        Smokey Blue: Hex-#79BEDB RGB-(121,190,219);
+        Bright Blue around valid inputs, etc... : Hex-#52A8EC RGB-(82,168,236);
+        Red around invalid inputs, etc... : Hex-#E9322D RGB-(233,50,45);
+*/ 
+body{
+    background-color: rgba(107,120,180,0.2) !important;
+}
+
+body>div.container{
+    /*Main container holding the content between header and footer*/
+    border-radius: 6px;
+    background-color: rgba(82,168,236,0.5);
+    color: #593E1A;
+    padding: 30px;
+}
+
+.navbar-inner{
+    background-color: #593E1A !important;
+    background-image: none !important;
+}
+
+.navbar .btn-navbar .icon-bar{
+    background-color: rgb(82,168,236) !important;
+}
+
+.navbar-inner a.btn.btn-navbar{
+    background-image: none;
+    background-color: #593E1A;
+    border-color: rgba(82,168,236,0.8);
+}
+
+.navbar-inner ul.nav a:hover, .navbar-inner ul.nav a.active{
+    background-color: rgb(82,168,236) !important;
+    color: #593E1A !important;
+}
+
+.navbar .brand, .navbar a{
+    color: rgb(82,168,236) !important;
+}
+
+.hero-unit{
+    background-color: transparent !important;
+    padding: 0;
+}
+
+/*PROFILE LIST*/
+.loanProfile{
+    border: 1px solid #593E1A;
+    margin-bottom: 10px;    
+}
+
+.loanProfile:hover{
+    cursor: pointer;
+}
+
+.loanProfile .profileName{
+    background-color: #593E1A;
+    color: #52A8EC;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.loanProfile .deleteProfile{
+    float: right;
+    padding-right: 10px;
+}
+
+.loanProfile .profileName a{
+    font-weight: normal; 
+    color: rgb(82,168,236);   
+}
+
+.loanProfile .profileName a:hover{
+    /*color: white;*/
+    text-decoration: underline;
+}
+
+.loanProfile .profileDescription{
+    font-size: 14px;
+    font-style: italic;
+    padding-left: 15px;
+}
+
+.loanProfile .loanScenario{
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+/*PROFILE DETAILS*/
+.profileDetailsContainer{
+    border: 1px solid #593E1A;
+    margin-bottom: 10px;
+}
+
+.profileDetailsContainer .detailsSectionHeader{
+    background-color: #593E1A;
+    color: #52A8EC;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.profileDetailsContainer .detailsSectionHeader .accordianTrigger{
+    float: right;
+    margin-right: 10px;
+}
+.profileDetailsContainer .detailsSectionHeader .accordianTrigger a{
+    width: 14px;
+    height: 14px;
+    background-image: url("../img/glyphicons-halflings-white.png");
+    background-position: -287px -120px;
+    background-repeat: no-repeat;
+    padding: 0;
+    background-color: #52A8EC;
+}
+.profileDetailsContainer .detailsSectionHeader .accordianTrigger a.collapsed{
+    background-position: -312px -120px;
+}
+
+.profileDetailsContainer > div:nth-child(2) > div:nth-child(1){
+    padding: 15px;
+}
+
+/*POFILE DETAILS -> RECURRING EXTRA PAYMENTS*/
+.recurringExtras section{
+    padding: 5px;
+}
+
+.recurringExtras section.odd{
+    background-color: #593E1A;
+    color: #52A8EC;
+}
+
+.recurringExtras section.even{
+    border: 1px solid #593E1A;
+    color: #593E1A;
+}
+
+.recurringExtras .rxpLabel, .recurringExtras .rxpAmount, .recurringExtras .rxpDelete{
+    float: left;
+    margin-right: 10px;
+}
+
+a.rxpDelete, a.rxpDelete:hover{
+    color: inherit;
+    text-decoration: underline;
+    margin-left: 20px;
+}
+
+div#rxpActionButtons{
+    margin-top: 20px;
+}
+
+/*PROFILE DETAILS -> LOAN SCENARIO*/
+form#profileEditForm.viewMode > div{
+    margin-top: 10px;
+}
+
+form#profileEditForm div.detailFieldLabel{
+    float: left;
+    min-width: 150px;
+    padding-top: 7px;
+    padding-left: 10px;
+    background-color: #593E1A;
+}
+
+form#profileEditForm div.detailFieldLabel label{
+    font-weight: bold;
+    font-size: 16px;
+    color: #52A8EC;
+    line-height: 18px;
+}
+
+form#profileEditForm.viewMode div.detailFieldLabel{
+    margin-right: 10px;
+}
+
+form#profileEditForm.viewMode div.detailField{
+    border: 1px solid #593E1A;
+    line-height: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*PROFILE DETAILS -> PAYMENT SCHEDULE*/
+div.paymentSchedule table{
+    border-collapse: collapse;
+    border: 1px solid #593E1A;    
+}
+
+div.paymentSchedule table th{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #52A8EC;
+    background-color: #593E1A;
+    line-height: 16px;    
+}
+
+div.paymentSchedule table th:not(:nth-child(1)){
+    border-left: 1px solid #52A8EC;
+}
+
+div.paymentSchedule table td{
+    border: 1px solid #593E1A;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+div.paymentSchedule table td a{
+    color: #266A2E;
+}
+
+div.paymentSchedule table td form{
+    margin-bottom: 5px;
+}
+
+div.paymentSchedule table td form input[type='text']{
+    max-width: 118px;
+    margin-bottom: 5px;
+}
+
+
+/*GENERAL FORM DISPLAY*/
+.formFieldLabel{
+    float: left;
+    min-width: 110px;
+    padding-top: 7px;
+    padding-left: 10px;
+    background-color: #593E1A;
+}
+
+.formFieldLabel label{
+    font-weight: bold;
+    font-size: 16px;
+    color: #52A8EC;
+    line-height: 18px;
+}
+
+footer{
+    padding-top: 15px;
+}
+
+
+
+
+/*FORM VALIDITY*/
+.invalid{
+    color: #E9322D;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 3px #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*RESPONSIVE BITS*/
+@media (min-width: 1200px){
+
+}
+
+@media (min-width: 980px){
+
+}
+
+@media (min-width: 768px) and (max-width: 979px){
+
+}
+
+@media (max-width: 767px){
+
+}
+
+@media (max-width: 480px){
+
+}
+
+
+
+

@@ -1,0 +1,17 @@
+
+<h2>You have {{profiles.length}} profiles</h2>
+<br>
+<div data-ng-repeat="profile in profiles" class="loanProfile" ng-click="viewProfileDetails(profile.id)">
+    <div class="profileName">{{profile.name}}
+        <div class="deleteProfile">
+            <a href="" ng-click="deleteProfile(profile.id)">Delete</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="profileDescription">{{profile.description}}</div>
+    <div class="loanScenario">
+        {{profile.loanScenario.scheduledMonthlyPayment | currency}} per month
+        <br>
+        {{profile.loanScenario.loanAmt | currency}} over {{profile.loanScenario.loanTerm + ' ' + profile.loanScenario.loanTermType}} at {{profile.loanScenario.interestRate.toFixed(3)}}%
+    </div>
+</div>
